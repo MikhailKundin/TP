@@ -5,14 +5,14 @@ public class Class10 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите три числа:");
+		System.out.println("Р’РІРµРґРёС‚Рµ С‚СЂРё С‡РёСЃР»Р°:");
 		int a = in.nextInt();
 		int b = in.nextInt();
 		int c = in.nextInt();
 		
 		in.close();
 		
-		System.out.printf("Результат: %b", abcMath(a, b, c));
+		System.out.printf("Р РµР·СѓР»СЊС‚Р°С‚: %b", abcMath(a, b, c));
 	}
 	
 	public static boolean abcMath(int a, int b, int c)

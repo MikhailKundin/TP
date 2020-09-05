@@ -5,14 +5,14 @@ public class Class4 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите три числа:");
+		System.out.println("Р’РІРµРґРёС‚Рµ С‚СЂРё С‡РёСЃР»Р°:");
 		double a = in.nextDouble();
 		double b = in.nextDouble();
 		double c = in.nextDouble();
 		
 		in.close();
 		
-		System.out.printf("Результат: %b", profitableGamble(a, b, c));
+		System.out.printf("Р РµР·СѓР»СЊС‚Р°С‚: %b", profitableGamble(a, b, c));
 	}
 
 	public static boolean profitableGamble(double a, double b, double c)

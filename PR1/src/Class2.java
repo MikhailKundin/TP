@@ -5,13 +5,13 @@ public class Class2 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите высоту и основание треугольника:");
+		System.out.println("Р’РІРµРґРёС‚Рµ РІС‹СЃРѕС‚Сѓ Рё РѕСЃРЅРѕРІР°РЅРёРµ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°:");
 		int h = in.nextInt();
 		int l = in.nextInt();
 		
 		in.close();
 		
-		System.out.printf("Площадь треугольника: %f", triArea(h, l));
+		System.out.printf("РџР»РѕС‰Р°РґСЊ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°: %f", triArea(h, l));
 	}
 	
 	public static double triArea(int h, int l)

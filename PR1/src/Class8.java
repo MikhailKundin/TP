@@ -4,13 +4,13 @@ public class Class8 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите стороны треугольника:");
+		System.out.println("Р’РІРµРґРёС‚Рµ СЃС‚РѕСЂРѕРЅС‹ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°:");
 		int a = in.nextInt();
 		int b = in.nextInt();
 		
 		in.close();
 		
-		System.out.printf("Максимальная длина третьей стороны %d", nextEdge(a, b));
+		System.out.printf("РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ РґР»РёРЅР° С‚СЂРµС‚СЊРµР№ СЃС‚РѕСЂРѕРЅС‹ %d", nextEdge(a, b));
 	}
 	
 	public static int nextEdge(int a, int b)

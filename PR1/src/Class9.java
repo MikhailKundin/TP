@@ -6,11 +6,11 @@ public class Class9 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите количество чисел:");
+		System.out.println("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ С‡РёСЃРµР»:");
 		int n = in.nextInt();
 		ArrayList<Integer> mas = new ArrayList<>(n);
 		
-		System.out.println("Введите числа:");
+		System.out.println("Р’РІРµРґРёС‚Рµ С‡РёСЃР»Р°:");
 		for (int i = 0; i < n; i++)
 		{
 			mas.add(in.nextInt());
@@ -18,7 +18,7 @@ public class Class9 {
 		
 		in.close();
 		
-		System.out.printf("Сумма кубов: %d", sumOfCubes(mas));
+		System.out.printf("РЎСѓРјРјР° РєСѓР±РѕРІ: %d", sumOfCubes(mas));
 	}
 	
 	public static int sumOfCubes(ArrayList<Integer> mas)

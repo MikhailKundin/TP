@@ -5,12 +5,12 @@ public class Class7 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите число:");
+		System.out.println("Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ:");
 		int n = in.nextInt();
 		
 		in.close();
 		
-		System.out.printf("Сумма равна %d", addUpTo(n));
+		System.out.printf("РЎСѓРјРјР° СЂР°РІРЅР° %d", addUpTo(n));
 	}
 
 	public static int addUpTo(int n)
