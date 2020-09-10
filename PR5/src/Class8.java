@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Class8 {
 
@@ -16,32 +17,32 @@ public class Class8 {
 
 	public static String getSha256Hash(String str)
 	{
-		String binStr = "";
-		String buff = "";
-		for (int i = 0; i < str.length(); i++)
+		byte[] bytes = str.getBytes();
+		long length = bytes.length * 8;
+		ArrayList<Integer> binList = new ArrayList<>(16);
+		int shift = 24;
+		int val = 0;
+		for (int i = 0; i < bytes.length; i++)
 		{
-			buff = Integer.toBinaryString(str.charAt(i));
-			for (int j = 0; j < 8 - buff.length(); j++)
+			val += Byte.toUnsignedInt(bytes[i]) << shift;
+			shift -= 8;
+			if (shift < 0)
 			{
-				binStr += '0';
+				shift = 24;
+				binList.add(val);
+				val = 0;
 			}
-			binStr += buff;
 		}
-		int length = binStr.length();
+		val += 0b10000000 << shift;
+		binList.add(val);
 		
-		binStr += '1';
-		
-		while ((binStr.length()+64) % 512 != 0)
+		while ((binList.size() * 32 + 64) % 512 != 0)
 		{
-			binStr += '0';
+			binList.add(0);
 		}
 		
-		buff = Integer.toBinaryString(length);
-		for (int i = 0; i < 64-buff.length(); i++)
-		{
-			binStr += '0';
-		}
-		binStr += buff;
+		binList.add((int)(length >>> 32));
+		binList.add((int)length);
 		
 		int[] hArr = {0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19};
 
@@ -54,52 +55,28 @@ public class Class8 {
 				   0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
 				   0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2};
 		
-		buff = "";
-		for (int i = 0; i < binStr.length()-512; i+=512)
+		Iterator<Integer> it = binList.iterator();
+		while (it.hasNext())
 		{
-			buff += binStr.substring(i, i+512);
-			buff += " ";
-		}
-		buff += binStr.substring(binStr.length()-512);
-		String[] blocks = buff.split(" ");
-		
-		for (String block : blocks)
-		{
-			buff = "";
-			for (int i = 1; i <= block.length(); i++)
+			ArrayList<Integer> block = new ArrayList<>(64);
+			for (int i = 0; i < 16; i++)
 			{
-				buff += block.charAt(i-1);
-				if (i % 32 == 0)
-				{
-					buff += ' ';
-				}
-			}
-			block = buff;
-			
-			for (int i = 0; i < 48; i++)
-			{
-				block += "00000000000000000000000000000000 ";
-			}
-			
-			String[] wordArrStr = block.split(" ");
-			ArrayList<Integer> wordArr = new ArrayList<>(wordArrStr.length);
-			for (int i = 0; i < wordArrStr.length; i++)
-			{
-				wordArr.add(Integer.parseUnsignedInt(wordArrStr[i], 2));
+				block.add(it.next());
 			}
 			
 			for (int i = 16; i < 64; i++)
 			{
-				int val1 = wordArr.get(i-15);
-				int val2 = wordArr.get(i-2);
+				block.add(0);
+			}
+			
+			for (int i = 16; i < 64; i++)
+			{
+				int val1 = block.get(i-15);
+				int val2 = block.get(i-2);
 				
-				int s0 = (((val1>>7) & (int)Math.pow(2, 32-7)-1) | (val1<<32-7)) ^
-						 (((val1>>18) & (int)Math.pow(2, 32-18)-1) | (val1<<32-18)) ^
-						 ((val1>>3) & (int)Math.pow(2, 32-3)-1);
-				int s1 = (((val2>>17) & (int)Math.pow(2, 32-17)-1) | (val2<<32-17)) ^
-						 (((val2>>19) & (int)Math.pow(2, 32-19)-1) | (val2<<32-19)) ^
-						 ((val2>>10) & (int)Math.pow(2, 32-10)-1);
-				wordArr.set(i, s0 + s1 + wordArr.get(i-16) + wordArr.get(i-7));
+				int s0 = (val1>>>7 | val1<<32-7) ^ (val1>>>18 | val1<<32-18) ^ val1>>>3 ;
+				int s1 = (val2>>>17 | val2<<32-17) ^ (val2>>>19 | val2<<32-19) ^ val2>>>10;
+				block.set(i, s0 + s1 + block.get(i-16) + block.get(i-7));
 			}
 			
 			int a = hArr[0];
@@ -113,14 +90,10 @@ public class Class8 {
 			
 			for (int i = 0; i < 64; i++)
 			{
-				int s1 = (((e>>6) & (int)Math.pow(2, 32-6)-1) | (e<<32-6)) ^
-						 (((e>>11) & (int)Math.pow(2, 32-11)-1) | (e<<32-11)) ^
-						 (((e>>25) & (int)Math.pow(2, 32-25)-1) | (e<<32-25));
+				int s1 = (e>>>6 | e<<32-6) ^ (e>>>11 | e<<32-11) ^ (e>>>25 | e<<32-25);
 				int ch = (e & f) ^ (~e & g);
-				int temp1 = h + s1 + ch + k[i] + wordArr.get(i);
-				int s0 = (((a>>2) & (int)Math.pow(2, 32-2)-1) | (a<<32-2)) ^
-						 (((a>>13) & (int)Math.pow(2, 32-13)-1) | (a<<32-13)) ^
-						 (((a>>22) & (int)Math.pow(2, 32-22)-1) | (a<<32-22));
+				int temp1 = h + s1 + ch + k[i] + block.get(i);
+				int s0 = (a>>>2 | a<<32-2) ^ (a>>>13 | a<<32-13) ^ (a>>>22 | a<<32-22);
 				int maj = (a & b) ^ (a & c) ^ (b & c);
 				int temp2 = s0 + maj;
 				h = g;
@@ -142,12 +115,10 @@ public class Class8 {
 			hArr[6] += g;
 			hArr[7] += h;
 		}
-			
-		String res = Integer.toHexString(hArr[0]) + Integer.toHexString(hArr[1]) +
-					 Integer.toHexString(hArr[2]) + Integer.toHexString(hArr[3]) +
-					 Integer.toHexString(hArr[4]) + Integer.toHexString(hArr[5]) +
-					 Integer.toHexString(hArr[6]) + Integer.toHexString(hArr[7]);
 		
-		return res;
+		return Integer.toHexString(hArr[0]) + Integer.toHexString(hArr[1]) +
+			   Integer.toHexString(hArr[2]) + Integer.toHexString(hArr[3]) +
+			   Integer.toHexString(hArr[4]) + Integer.toHexString(hArr[5]) +
+			   Integer.toHexString(hArr[6]) + Integer.toHexString(hArr[7]);
 	}
 }
