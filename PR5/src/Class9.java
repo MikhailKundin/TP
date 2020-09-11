@@ -1,45 +1,43 @@
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.nio.charset.StandardCharsets;
-import java.math.BigInteger;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Class9 {
-
-	public static void main(String[] args) throws NoSuchAlgorithmException {
-		MessageDigest md = MessageDigest.getInstance("SHA-256");
-	    String text = "gjh";
-	    byte[] byt = text.getBytes();
-	    int index = 0;
-	    int val = 0;
-	    int mult = 24;
-	    ArrayList<Integer> list = new ArrayList<>();
-	    for (index = 0; index < byt.length; index++)
-	    {
-	    	val += Byte.toUnsignedInt(byt[index]) << mult;
-	    	mult -= 8;
-	    	if (mult < 0)
-	    	{
-	    		mult = 24;
-	    		list.add(val);
-	    		val = 0;
-	    	}
-	    }
-	    list.add(val);
-	    for (int i = 0; i < list.size(); i++)
-	    {
-	    	//System.out.print(Integer.toBinaryString(list.get(i)));
-	    }
-	    long a = 0b1111000011110000111100001111000011111111000000001111111100000000L;
-	    int c = 0b10000000000000000000000000000000;
-	    System.out.println(Integer.toBinaryString(c));
-
-	    // Change this to UTF-16 if needed
-	    md.update(text.getBytes(StandardCharsets.UTF_8));
-	    byte[] digest = md.digest();
-
-	    String hex = String.format("%064x", new BigInteger(1, digest));
-	    //System.out.println(hex);
+	public static void main(String[] args) {
+		Scanner in  = new Scanner(System.in);
+		
+		System.out.println("Введите строку:");
+		String str = in.nextLine();
+		
+		in.close();
+		
+		System.out.println(correctTitle(str));
 	}
 
+	public static String correctTitle(String str)
+	{
+		str = str.toLowerCase();
+		String[] words = str.split(" ");
+		String res = "";
+		for (String word : words)
+		{
+			String[] subWords = word.split("-");
+			String subRes = "";
+			for (String subWord : subWords)
+			{
+				if (!subWord.equals("of") && !subWord.equals("and") && !subWord.equals("the") && !subWord.equals("in"))
+				{
+					subRes += (char)(subWord.charAt(0)-32);
+					subRes += subWord.substring(1);
+					subRes += "-";
+				}
+				else
+				{
+					subRes += subWord + "-";
+				}
+			}
+			res += subRes.substring(0, subRes.length()-1);
+			res += " ";
+		}
+		
+		return res;
+	}
 }
