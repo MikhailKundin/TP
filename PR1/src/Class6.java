@@ -10,7 +10,7 @@ public class Class6 {
 		
 		in.close();
 		
-		System.out.printf("Код символа: %s", ctoa(a.charAt(0)));
+		System.out.println(ctoa(a.charAt(0)));
 	}
 
 	public static int ctoa(char a)

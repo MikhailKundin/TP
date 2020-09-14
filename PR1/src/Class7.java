@@ -10,7 +10,7 @@ public class Class7 {
 		
 		in.close();
 		
-		System.out.printf("Сумма равна %d", addUpTo(n));
+		System.out.print(addUpTo(n));
 	}
 
 	public static int addUpTo(int n)

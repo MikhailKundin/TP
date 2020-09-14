@@ -7,19 +7,17 @@ public class Class2 {
 	{
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите количество чисел:");
-		int n = in.nextInt();
-		
 		System.out.println("Введите числа:");
-		ArrayList<Integer> mas = new ArrayList<>();
-		for (int i = 0; i < n; i++)
+		String[] strArr = in.nextLine().split(" ");
+		ArrayList<Integer> mas = new ArrayList<>(strArr.length);
+		for (int i = 0; i < strArr.length; i++)
 		{
-			mas.add(in.nextInt());
+			mas.add(Integer.parseInt(strArr[i]));
 		}
 		
 		in.close();
 		
-		System.out.printf("Разница между самым большим и самым маленьким числом: %d", differenceMaxMin(mas));
+		System.out.println(differenceMaxMin(mas));
 	}
 	
 	public static int differenceMaxMin(ArrayList<Integer> mas)

@@ -6,20 +6,21 @@ public class Class6 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите размер первого и второго массива:");
-		int n1 = in.nextInt();
-		int n2 = in.nextInt();
+		System.out.println("Введите два массива:");
+		String[] strArr = in.nextLine().split(" ");
 		
-		ArrayList<Integer> mas1 = new ArrayList<>(n1);
-		ArrayList<Integer> mas2 = new ArrayList<>(n2);
-		System.out.println("Введите первый и второй массив:");
-		for (int i = 0; i < n1; i++)
+		ArrayList<Integer> mas1 = new ArrayList<>(strArr.length);
+		for (int i = 0; i < strArr.length; i++)
 		{
-			mas1.add(in.nextInt());
+			mas1.add(Integer.parseInt(strArr[i]));
 		}
-		for (int i = 0; i < n2; i++)
+		
+		strArr = in.nextLine().split(" ");
+		
+		ArrayList<Integer> mas2 = new ArrayList<>(strArr.length);
+		for (int i = 0; i < strArr.length; i++)
 		{
-			mas2.add(in.nextInt());
+			mas2.add(Integer.parseInt(strArr[i]));
 		}
 		
 		in.close();

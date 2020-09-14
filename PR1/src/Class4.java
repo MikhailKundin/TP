@@ -12,7 +12,7 @@ public class Class4 {
 		
 		in.close();
 		
-		System.out.printf("Результат: %b", profitableGamble(a, b, c));
+		System.out.println(profitableGamble(a, b, c));
 	}
 
 	public static boolean profitableGamble(double a, double b, double c)

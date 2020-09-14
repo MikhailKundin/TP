@@ -12,7 +12,7 @@ public class Class5 {
 		
 		in.close();
 		
-		System.out.printf("Результат: %s", operation(a, b, c));
+		System.out.println(operation(a, b, c));
 	}
 
 	public static String operation(int a, int b, int c)

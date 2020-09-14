@@ -10,7 +10,7 @@ public class Class6 {
 		
 		in.close();
 		
-		System.out.printf("Результат: %d", fibonacci(n));
+		System.out.println(fibonacci(n));
 	}
 
 	public static int fibonacci(int n)

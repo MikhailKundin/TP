@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.Iterator;
 
 public class Class4 {
 
@@ -52,10 +51,8 @@ public class Class4 {
 			String res = urlParts[0] + "?";
 			
 			Set<String> keys = map.keySet();
-			Iterator<String> it = keys.iterator();
-			while (it.hasNext())
+			for (String key : keys)
 			{
-				String key = it.next();
 				if (!blockKeys.contains(key))
 				{
 					res += key + "=" + map.get(key) + "&";

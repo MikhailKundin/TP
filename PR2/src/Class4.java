@@ -7,20 +7,19 @@ public class Class4 {
 	{
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите количество элементов массива:");
-		int n = in.nextInt();
+		
+		System.out.println("Введите массив чисел:");
+		String[] strArr = in.nextLine().split(" ");
 		
 		ArrayList<Integer> mas = new ArrayList<>();
-		System.out.println("Введите массив чисел:");
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < strArr.length; i++)
 		{
-			mas.add(in.nextInt());
+			mas.add(Integer.parseInt(strArr[i]));
 		}
 		
 		in.close();
 		
 		cumulativeSum(mas);
-		System.out.print("Результат: ");
 		for (Integer val : mas)
 		{
 			System.out.print(val.toString() + " ");

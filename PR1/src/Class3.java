@@ -12,7 +12,7 @@ public class Class3 {
 		
 		in.close();
 		
-		System.out.printf("Общее количество ног: %d", animals(a, b, c));
+		System.out.println(animals(a, b, c));
 	}
 	
 	public static int animals(int a, int b, int c)

@@ -11,7 +11,7 @@ public class Class1 {
 		
 		in.close();
 		
-		System.out.printf("Остаток от деления: %d", remainder(a, b));
+		System.out.println(remainder(a, b));
 	}
 
 	public static int remainder(int a, int b)

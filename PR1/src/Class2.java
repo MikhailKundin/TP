@@ -11,7 +11,7 @@ public class Class2 {
 		
 		in.close();
 		
-		System.out.printf("Площадь треугольника: %f", triArea(h, l));
+		System.out.println(triArea(h, l));
 	}
 	
 	public static double triArea(int h, int l)

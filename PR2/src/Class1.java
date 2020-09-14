@@ -11,7 +11,7 @@ public class Class1 {
 		
 		in.close();
 		
-		System.out.printf("Результат: %s", repeat(str, n));
+		System.out.println(repeat(str, n));
 	}
 
 	public static String repeat(String str, int n)

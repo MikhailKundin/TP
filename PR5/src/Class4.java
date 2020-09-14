@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Class4 {
 
@@ -8,12 +7,11 @@ public class Class4 {
 		Scanner in  = new Scanner(System.in);
 		
 		System.out.println("Введите последовательность чисел:");
-		String str = in.nextLine();
-		String[] strArr = str.split(" ");
+		String[] strArr = in.nextLine().split(" ");
 		
 		in.close();
 		
-		ArrayList<Integer> mas = new ArrayList<>(str.length());
+		ArrayList<Integer> mas = new ArrayList<>(strArr.length);
 		for (int i = 0; i < strArr.length; i++)
 		{
 			mas.add(Integer.parseInt(strArr[i]));
@@ -25,11 +23,10 @@ public class Class4 {
 	public static int sumDigProd(ArrayList<Integer> mas)
 	{
 		int sum = 0;
-		Iterator<Integer> it = mas.iterator();
 		
-		while (it.hasNext())
+		for (int val : mas)
 		{
-			sum += it.next();
+			sum += val;
 		}
 		
 		while (sum > 9)

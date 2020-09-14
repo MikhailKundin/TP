@@ -10,7 +10,7 @@ public class Class8 {
 		
 		in.close();
 		
-		System.out.printf("Максимальная длина третьей стороны %d", nextEdge(a, b));
+		System.out.println(nextEdge(a, b));
 	}
 	
 	public static int nextEdge(int a, int b)

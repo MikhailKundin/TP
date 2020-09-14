@@ -10,7 +10,7 @@ public class Class5 {
 		
 		in.close();
 		
-		System.out.printf("Число десятичных знаков: %d", getDecimalPlaces(str));
+		System.out.println(getDecimalPlaces(str));
 	}
 	
 	public static int getDecimalPlaces(String str)

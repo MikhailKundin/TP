@@ -1,33 +1,29 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.*;
 
 public class Class9 {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите количество чисел:");
-		int n = in.nextInt();
-		ArrayList<Integer> mas = new ArrayList<>(n);
-		
 		System.out.println("Введите числа:");
-		for (int i = 0; i < n; i++)
+		String[] strArr = in.nextLine().split(" ");
+		
+		ArrayList<Integer> mas = new ArrayList<>(strArr.length);
+		for (int i = 0; i < strArr.length; i++)
 		{
-			mas.add(in.nextInt());
+			mas.add(Integer.parseInt(strArr[i]));
 		}
 		
 		in.close();
 		
-		System.out.printf("Сумма кубов: %d", sumOfCubes(mas));
+		System.out.println(sumOfCubes(mas));
 	}
 	
 	public static int sumOfCubes(ArrayList<Integer> mas)
 	{
 		int sum = 0;
-		Iterator<Integer> it = mas.iterator();
-		while (it.hasNext())
+		for (int val : mas)
 		{
-			int val = it.next();
 			sum += val * val * val;
 		}
 		return sum;

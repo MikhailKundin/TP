@@ -1,20 +1,17 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Class3 {
 	public static void main(String[] args)
 	{
 		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Введите размер массива:");
-		int n = in.nextInt();
-		
 		System.out.println("Введите массив:");
-		ArrayList<Integer> mas = new ArrayList<>();
-		for (int i = 0; i < n; i++)
+		String[] strArr = in.nextLine().split(" ");
+		ArrayList<Integer> mas = new ArrayList<>(strArr.length);
+		for (int i = 0; i < strArr.length; i++)
 		{
-			mas.add(in.nextInt());
+			mas.add(Integer.parseInt(strArr[i]));
 		}
 		
 		in.close();
@@ -24,11 +21,10 @@ public class Class3 {
 	
 	public static boolean isAvgWhole(ArrayList<Integer> mas)
 	{
-		Iterator<Integer> it = mas.iterator();
 		int sum = 0;
-		while (it.hasNext())
+		for (int val : mas)
 		{
-			sum += it.next();
+			sum += val;
 		}
 		
 		if (sum % mas.size() == 0)

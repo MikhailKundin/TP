@@ -12,7 +12,7 @@ public class Class10 {
 		
 		in.close();
 		
-		System.out.printf("Результат: %b", abcMath(a, b, c));
+		System.out.println(abcMath(a, b, c));
 	}
 	
 	public static boolean abcMath(int a, int b, int c)
