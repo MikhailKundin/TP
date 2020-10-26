@@ -14,7 +14,7 @@ public class Class5 {
 		System.out.println(BMI(h, w));
 	}
 
-	public static String BMI(double h, double w)
+	public static String BMI(double w, double h)
 	{
 		double val = w / (h*h);
 		String res = String.format("%.1f", val);
